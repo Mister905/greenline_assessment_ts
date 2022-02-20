@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
 
 interface I_Customer {
-  company: string;
+  company_id: string;
   name: string;
   created_at: Date;
 }
 
 const CustomerSchema = new Schema<I_Customer>({
-  company: { type: String, required: true },
+  company_id: { type: String, required: true },
   name: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
 });
