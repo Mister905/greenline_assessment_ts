@@ -15,8 +15,22 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// @route GET /api/products/:company_id
-router.get("/:company_id", async (req: Request, res: Response) => {
+// @route GET /api/products/:product_id
+router.get("/:product_id", async (req: Request, res: Response) => {
+  try {
+    const { product_id } = req.params;
+
+    const product = await Product.findById(product_id);
+
+    return res.send(product);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Server Error");
+  }
+});
+
+// @route GET /api/products/company/:company_id
+router.get("/company/:company_id", async (req: Request, res: Response) => {
   try {
     const { company_id } = req.params;
     const products = await Product.find({ company_id });
